@@ -4,22 +4,22 @@
 Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.10.1
+Version:	2.11.0
 Release:	1
 License:	LGPL
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.10/%{module}-%{version}.tar.bz2
-# Source0-md5:	3a69a75b4dfdb52642f26a4d45fcfde8
+Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.11/%{module}-%{version}.tar.bz2
+# Source0-md5:	5a437150bdffdcdb5c7de7f3f6906449
 Source1:	%{name}-jhflags.m4
 Source2:	%{name}-python.m4
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 1:2.11.2
+BuildRequires:	glib2-devel >= 1:2.12.0
 BuildRequires:	libtool
 BuildRequires:	python-devel >= 1:2.3.2
 %pyrequires_eq	python-modules
-Requires:	glib2 >= 1:2.11.2
+Requires:	glib2 >= 1:2.12.0
 Conflicts:	python-pygtk < 1:1.0
 Obsoletes:	python-pygtk-glarea
 Obsoletes:	python-pygtk-gobject
@@ -36,7 +36,7 @@ Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.11.2
+Requires:	glib2-devel >= 1:2.12.0
 Requires:	python-devel >= 1:2.3.2
 
 %description devel
@@ -94,8 +94,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{py_sitedir}/gtk-2.0/gobject*.so
+%attr(755,root,root) %{py_sitedir}/gtk-2.0/gobject/*.so
 %dir %{py_sitedir}/gtk-2.0
+%dir %{py_sitedir}/gtk-2.0/gobject
+%{py_sitedir}/gtk-2.0/gobject/*.py[co]
 %{py_sitedir}/gtk-2.0/*.py[co]
 %{py_sitedir}/*.py[co]
 %{py_sitedir}/pygtk.pth
