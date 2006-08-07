@@ -4,22 +4,22 @@
 Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.11.0
+Version:	2.11.1
 Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.11/%{module}-%{version}.tar.bz2
-# Source0-md5:	5a437150bdffdcdb5c7de7f3f6906449
+# Source0-md5:	e4605e8b3da22650b3136887faa6fc26
 Source1:	%{name}-jhflags.m4
 Source2:	%{name}-python.m4
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 1:2.12.0
+BuildRequires:	glib2-devel >= 1:2.12.1
 BuildRequires:	libtool
 BuildRequires:	python-devel >= 1:2.3.2
 %pyrequires_eq	python-modules
-Requires:	glib2 >= 1:2.12.0
+Requires:	glib2 >= 1:2.12.1
 Conflicts:	python-pygtk < 1:1.0
 Obsoletes:	python-pygtk-glarea
 Obsoletes:	python-pygtk-gobject
@@ -36,7 +36,7 @@ Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.12.0
+Requires:	glib2-devel >= 1:2.12.1
 Requires:	python-devel >= 1:2.3.2
 
 %description devel
@@ -63,9 +63,9 @@ Ten pakiet zawiera przyk³adowe programy dla biblioteki GObject.
 %prep
 %setup -q -n %{module}-%{version}
 
-mkdir m4
-cp %{SOURCE1} m4/python.m4
-cp %{SOURCE2} m4/jhflags.m4
+#mkdir m4
+#cp %{SOURCE1} m4/python.m4
+#cp %{SOURCE2} m4/jhflags.m4
 
 %build
 %{__libtoolize}
@@ -80,7 +80,8 @@ cp %{SOURCE2} m4/jhflags.m4
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	HTMLdir='%{_gtkdocdir}/%{name}'
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -106,6 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/*.pc
+%{_gtkdocdir}/%{name}
 
 %files examples
 %defattr(644,root,root,755)
