@@ -5,18 +5,20 @@ Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.11.1
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.11/%{module}-%{version}.tar.bz2
 # Source0-md5:	e4605e8b3da22650b3136887faa6fc26
 Source1:	%{name}-jhflags.m4
 Source2:	%{name}-python.m4
+Patch0:		%{name}-shade_verbatim.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.12.1
 BuildRequires:	libtool
+BuildRequires:	libxslt-progs >= 1.1.17
 BuildRequires:	python-devel >= 1:2.3.2
 %pyrequires_eq	python-modules
 Requires:	glib2 >= 1:2.12.1
@@ -62,6 +64,7 @@ Ten pakiet zawiera przyk³adowe programy dla biblioteki GObject.
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch0 -p1
 
 #mkdir m4
 #cp %{SOURCE1} m4/python.m4
