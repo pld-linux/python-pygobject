@@ -61,6 +61,18 @@ This package contains example programs for GObject library.
 %description examples -l pl
 Ten pakiet zawiera przyk³adowe programy dla biblioteki GObject.
 
+%package apidocs
+Summary:	pygobject API documentation
+Summary(pl):	Dokumentacja API pygobject
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+pygobject API documentation.
+
+%description apidocs -l pl
+Dokumentacja API pygobject.
+
 %prep
 %setup -q -n %{module}-%{version}
 
@@ -117,3 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %files examples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/%{name}
