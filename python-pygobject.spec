@@ -4,15 +4,15 @@
 Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.11.2
-Release:	2
+Version:	2.11.3
+Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.11/%{module}-%{version}.tar.bz2
-# Source0-md5:	ca5d9a6336f6b82fca90481683f5acef
+# Source0-md5:	31e4da79d27d7941c36ea549acce8da6
 Source1:	%{name}-jhflags.m4
 Source2:	%{name}-python.m4
-Patch0:		%{name}-typename.patch
+Source3:	%{name}-as-ac-expand.m4
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -76,11 +76,11 @@ Dokumentacja API pygobject.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
 
-#mkdir m4
-#cp %{SOURCE1} m4/python.m4
-#cp %{SOURCE2} m4/jhflags.m4
+mkdir m4
+cp %{SOURCE1} m4/python.m4
+cp %{SOURCE2} m4/jhflags.m4
+cp %{SOURCE3} m4/as-ac-expand.m4
 
 %build
 %{__libtoolize}
