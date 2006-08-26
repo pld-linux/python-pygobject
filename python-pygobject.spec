@@ -15,7 +15,7 @@ Source2:	%{name}-python.m4
 Source3:	%{name}-as-ac-expand.m4
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	glib2-devel >= 1:2.12.1
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.17
