@@ -4,24 +4,24 @@
 Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.11.3
-Release:	2
+Version:	2.11.4
+Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.11/%{module}-%{version}.tar.bz2
-# Source0-md5:	31e4da79d27d7941c36ea549acce8da6
+# Source0-md5:	6c8e1edb1def6ad551ba4ad6a7d4858d
 Source1:	%{name}-jhflags.m4
 Source2:	%{name}-python.m4
 Source3:	%{name}-as-ac-expand.m4
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	glib2-devel >= 1:2.12.1
+BuildRequires:	glib2-devel >= 1:2.12.2
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.17
-BuildRequires:	python-devel >= 1:2.3.2
+BuildRequires:	python-devel >= 1:2.3.5
 %pyrequires_eq	python-modules
-Requires:	glib2 >= 1:2.12.1
+Requires:	glib2 >= 1:2.12.2
 Conflicts:	python-pygtk < 1:1.0
 Obsoletes:	python-pygtk-glarea
 Obsoletes:	python-pygtk-gobject
@@ -38,8 +38,8 @@ Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.12.1
-Requires:	python-devel >= 1:2.3.2
+Requires:	glib2-devel >= 1:2.12.2
+Requires:	python-devel >= 1:2.3.5
 
 %description devel
 This package contains files required to build wrappers for GObject
