@@ -4,24 +4,21 @@
 Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.11.4
+Version:	2.12.0
 Release:	1
 License:	LGPL
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.11/%{module}-%{version}.tar.bz2
-# Source0-md5:	6c8e1edb1def6ad551ba4ad6a7d4858d
-Source1:	%{name}-jhflags.m4
-Source2:	%{name}-python.m4
-Source3:	%{name}-as-ac-expand.m4
+Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.12/%{module}-%{version}.tar.bz2
+# Source0-md5:	5b0e758dbd7df17e38709584f5a4174e
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	glib2-devel >= 1:2.12.2
+BuildRequires:	glib2-devel >= 1:2.12.3
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.17
 BuildRequires:	python-devel >= 1:2.3.5
 %pyrequires_eq	python-modules
-Requires:	glib2 >= 1:2.12.2
+Requires:	glib2 >= 1:2.12.3
 Conflicts:	python-pygtk < 1:1.0
 Obsoletes:	python-pygtk-glarea
 Obsoletes:	python-pygtk-gobject
@@ -38,7 +35,7 @@ Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.12.2
+Requires:	glib2-devel >= 1:2.12.3
 Requires:	python-devel >= 1:2.3.5
 
 %description devel
@@ -76,11 +73,6 @@ Dokumentacja API pygobject.
 
 %prep
 %setup -q -n %{module}-%{version}
-
-mkdir m4
-cp %{SOURCE1} m4/python.m4
-cp %{SOURCE2} m4/jhflags.m4
-cp %{SOURCE3} m4/as-ac-expand.m4
 
 %build
 %{__libtoolize}
