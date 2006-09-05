@@ -5,7 +5,7 @@ Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.12.1
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.12/%{module}-%{version}.tar.bz2
@@ -116,7 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/*.pc
-%{_gtkdocdir}/%{name}
 %{_datadir}/%{module}/xsl/*.py
 %{_datadir}/%{module}/xsl/*.xsl
 
