@@ -4,12 +4,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.12.0
+Version:	2.12.1
 Release:	1
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.12/%{module}-%{version}.tar.bz2
-# Source0-md5:	5b0e758dbd7df17e38709584f5a4174e
+# Source0-md5:	bc2cb314be7d66c19b75805609556aaa
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
