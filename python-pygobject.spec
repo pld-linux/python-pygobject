@@ -5,7 +5,7 @@ Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.12.1
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.12/%{module}-%{version}.tar.bz2
@@ -88,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	HTMLdir='%{_gtkdocdir}/%{name}'
+	HTMLdir='%{_gtkdocdir}/%{module}'
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -126,4 +126,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/%{name}
+%{_gtkdocdir}/%{module}
