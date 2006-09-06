@@ -1,0 +1,12 @@
+diff -urN aaa/pygobject-2.12.1/pygobject-2.0.pc.in pygobject-2.12.1/pygobject-2.0.pc.in
+--- aaa/pygobject-2.12.1/pygobject-2.0.pc.in	2006-08-14 14:34:15.000000000 +0200
++++ pygobject-2.12.1/pygobject-2.0.pc.in	2006-09-06 19:58:51.059787808 +0200
+@@ -9,7 +9,7 @@
+ # install additional headers.
+ pygtkincludedir=${includedir}/pygtk-2.0
+ fixxref=${datadir}/pygobject/xsl/fixxref.py
+-pygdocs=${datadir}/gtk-doc/html/pygobject
++pygdocs=${datadir}/doc/gtk-doc/html/pygobject
+ 
+ Name: PyGObject
+ Description: Python bindings for GObject
