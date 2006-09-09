@@ -5,7 +5,7 @@ Summary:	Python bindings for GObject library
 Summary(pl):	Wi±zania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.12.1
-Release:	4
+Release:	5
 License:	LGPL
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/gnome/sources/pygobject/2.12/%{module}-%{version}.tar.bz2
