@@ -2,7 +2,7 @@
 %define		module	pygobject
 #
 Summary:	Python bindings for GObject library
-Summary(pl):	Wi±zania Pythona do biblioteki GObject
+Summary(pl.UTF-8):   WiÄ…zania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.12.3
 Release:	1
@@ -29,12 +29,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Python bindings for GObject library.
 
-%description -l pl
-Wi±zania Pythona do biblioteki GObject.
+%description -l pl.UTF-8
+WiÄ…zania Pythona do biblioteki GObject.
 
 %package devel
 Summary:	Python bindings for GObject library
-Summary(pl):	Wi±zania Pythona do biblioteki GObject
+Summary(pl.UTF-8):   WiÄ…zania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.4
@@ -44,13 +44,13 @@ Requires:	python-devel >= 1:2.3.5
 This package contains files required to build wrappers for GObject
 addon libraries so that they interoperate with Python bindings.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pakiet zawiera pliki wymagane do zbudowania funkcji do biblioteki
-GObject, tak by mog³y te biblioteki kooperowaæ z wi±zaniami Pythona.
+GObject, tak by mogÅ‚y te biblioteki kooperowaÄ‡ z wiÄ…zaniami Pythona.
 
 %package examples
 Summary:	Example programs for GObject library
-Summary(pl):	Programy przyk³adowe dla biblioteki GObject
+Summary(pl.UTF-8):   Programy przykÅ‚adowe dla biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	python-pygtk
@@ -58,19 +58,19 @@ Obsoletes:	python-pygtk
 %description examples
 This package contains example programs for GObject library.
 
-%description examples -l pl
-Ten pakiet zawiera przyk³adowe programy dla biblioteki GObject.
+%description examples -l pl.UTF-8
+Ten pakiet zawiera przykÅ‚adowe programy dla biblioteki GObject.
 
 %package apidocs
 Summary:	pygobject API documentation
-Summary(pl):	Dokumentacja API pygobject
+Summary(pl.UTF-8):   Dokumentacja API pygobject
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
 pygobject API documentation.
 
-%description apidocs -l pl
+%description apidocs -l pl.UTF-8
 Dokumentacja API pygobject.
 
 %prep
