@@ -2,7 +2,7 @@
 %define		module	pygobject
 #
 Summary:	Python bindings for GObject library
-Summary(pl.UTF-8):   Wiązania Pythona do biblioteki GObject
+Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.12.3
 Release:	1
@@ -34,7 +34,7 @@ Wiązania Pythona do biblioteki GObject.
 
 %package devel
 Summary:	Python bindings for GObject library
-Summary(pl.UTF-8):   Wiązania Pythona do biblioteki GObject
+Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.4
@@ -50,7 +50,7 @@ GObject, tak by mogły te biblioteki kooperować z wiązaniami Pythona.
 
 %package examples
 Summary:	Example programs for GObject library
-Summary(pl.UTF-8):   Programy przykładowe dla biblioteki GObject
+Summary(pl.UTF-8):	Programy przykładowe dla biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	python-pygtk
@@ -63,7 +63,7 @@ Ten pakiet zawiera przykładowe programy dla biblioteki GObject.
 
 %package apidocs
 Summary:	pygobject API documentation
-Summary(pl.UTF-8):   Dokumentacja API pygobject
+Summary(pl.UTF-8):	Dokumentacja API pygobject
 Group:		Documentation
 Requires:	gtk-doc-common
 
