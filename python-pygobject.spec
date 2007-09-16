@@ -16,6 +16,7 @@ URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	glib2-devel >= 1:2.14.0
+BuildRequires:	libffi-devel
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.22
 BuildRequires:	python-devel >= 1:2.3.5
