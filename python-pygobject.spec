@@ -40,6 +40,7 @@ Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.14.0
+Requires:	libffi-devel
 Requires:	python-devel >= 1:2.3.5
 
 %description devel
