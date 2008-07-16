@@ -100,8 +100,6 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/*/{*.la,*/*.la}
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/{*.pyc,*/*.pyc,*/*/*.pyc}
-rm -f $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen/*.pyc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -115,22 +113,17 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/gtk-2.0
 %dir %{py_sitedir}/gtk-2.0/gio
 %dir %{py_sitedir}/gtk-2.0/gobject
-%{py_sitedir}/gtk-2.0/gio/*.py
-%{py_sitedir}/gtk-2.0/gio/*.pyo
-%{py_sitedir}/gtk-2.0/gobject/*.py
-%{py_sitedir}/gtk-2.0/gobject/*.pyo
-%{py_sitedir}/gtk-2.0/*.py
-%{py_sitedir}/gtk-2.0/*.pyo
-%{py_sitedir}/*.py
-%{py_sitedir}/*.pyo
+%{py_sitedir}/gtk-2.0/gio/*.py[co]
+%{py_sitedir}/gtk-2.0/gobject/*.py[co]
+%{py_sitedir}/gtk-2.0/*.py[co]
+%{py_sitedir}/*.py[co]
 %{py_sitedir}/pygtk.pth
 %dir %{_datadir}/%{module}
 %dir %{_datadir}/%{module}/2.0
 %dir %{_datadir}/%{module}/2.0/codegen
 %dir %{_datadir}/%{module}/2.0/defs
 %dir %{_datadir}/%{module}/xsl
-%{_datadir}/%{module}/2.0/codegen/*.py
-%{_datadir}/%{module}/2.0/codegen/*.pyo
+%{_datadir}/%{module}/2.0/codegen/*.py[co]
 %{_datadir}/%{module}/2.0/defs/*.defs
 %{_datadir}/%{module}/2.0/defs/*.override
 
@@ -138,6 +131,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/*.pc
+%{py_sitedir}/gtk-2.0/gio/*.py
+%{py_sitedir}/gtk-2.0/gobject/*.py
+%{py_sitedir}/gtk-2.0/*.py
+%{py_sitedir}/*.py
+%{_datadir}/%{module}/2.0/codegen/*.py
 %{_datadir}/%{module}/xsl/*.py
 %{_datadir}/%{module}/xsl/*.xsl
 
