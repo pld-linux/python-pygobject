@@ -11,6 +11,7 @@ Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.15/%{module}-%{version}.tar.bz2
 # Source0-md5:	60bfabf036cbafb3a584b3c7beee05d1
 Patch0:		%{name}-pc.patch
+Patch1:		%{name}-threads-init.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
@@ -79,6 +80,7 @@ Dokumentacja API pygobject.
 %prep
 %setup -q -n %{module}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
