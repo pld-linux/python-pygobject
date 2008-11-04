@@ -18,6 +18,7 @@ BuildRequires:	glib2-devel >= 1:2.14.0
 BuildRequires:	libffi-devel
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.22
+BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.3.5
 %pyrequires_eq	python-modules
 BuildRequires:	rpm-pythonprov
