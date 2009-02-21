@@ -4,14 +4,13 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.15.2
+Version:	2.16.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.15/%{module}-%{version}.tar.bz2
-# Source0-md5:	60bfabf036cbafb3a584b3c7beee05d1
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.16/%{module}-%{version}.tar.bz2
+# Source0-md5:	431e7d4632163b93d1ee43cd071a389c
 Patch0:		%{name}-pc.patch
-Patch1:		%{name}-threads-init.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
@@ -80,7 +79,6 @@ Dokumentacja API pygobject.
 %prep
 %setup -q -n %{module}-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
