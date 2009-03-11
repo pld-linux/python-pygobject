@@ -103,7 +103,6 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/*/{*.la,*/*.la}
-rm -f $RPM_BUILD_ROOT%{_libdir}/libpyglib-*.la
 
 %py_postclean %{_datadir}/%{module}/2.0/codegen
 
@@ -139,6 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pygobject-codegen-2.0
 %attr(755,root,root) %{_libdir}/libpyglib-2.0.so
+%{_libdir}/libpyglib-2.0.la
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/*.pc
 %dir %{_datadir}/%{module}/2.0
