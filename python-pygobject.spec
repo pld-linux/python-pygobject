@@ -116,7 +116,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libpyglib-*.so*
+%attr(755,root,root) %{_libdir}/libpyglib-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0.so.0
 %dir %{py_sitedir}/gtk-2.0
 %dir %{py_sitedir}/gtk-2.0/gio
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/_gio.so
@@ -137,6 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pygobject-codegen-2.0
+%attr(755,root,root) %{_libdir}/libpyglib-2.0.so
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/*.pc
 %dir %{_datadir}/%{module}/2.0
