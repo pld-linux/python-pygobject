@@ -4,14 +4,15 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.16.1
+Version:	2.18.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.16/%{module}-%{version}.tar.bz2
-# Source0-md5:	8e26f2572e6b72dbd2591677055f8d30
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.18/%{module}-%{version}.tar.bz2
+# Source0-md5:	522b813219a6ad14b85b25d953b08727
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
+Patch2:		%{name}-buildfix.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
@@ -82,6 +83,7 @@ Dokumentacja API pygobject.
 %setup -q -n %{module}-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -115,8 +117,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libpyglib-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0.so.0
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python.so.0
 %dir %{py_sitedir}/gtk-2.0
 %dir %{py_sitedir}/gtk-2.0/gio
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/_gio.so
@@ -137,8 +139,8 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pygobject-codegen-2.0
-%attr(755,root,root) %{_libdir}/libpyglib-2.0.so
-%{_libdir}/libpyglib-2.0.la
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python.so
+%{_libdir}/libpyglib-2.0-python.la
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/*.pc
 %dir %{_datadir}/%{module}/2.0
