@@ -4,20 +4,20 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.18.0
+Version:	2.20.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.18/%{module}-%{version}.tar.bz2
-# Source0-md5:	522b813219a6ad14b85b25d953b08727
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.20/%{module}-%{version}.tar.bz2
+# Source0-md5:	10e1fb79be3d698476a28b1e1b0c5640
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
-Patch2:		%{name}-buildfix.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	glib2-devel >= 1:2.16.0
-BuildRequires:	libffi-devel
+BuildRequires:	gobject-introspection-devel >= 0.6.3
+BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.22
 BuildRequires:	pkgconfig
@@ -43,7 +43,7 @@ Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.16.0
-Requires:	libffi-devel
+Requires:	libffi-devel >= 3.0
 Requires:	python-devel >= 1:2.3.5
 
 %description devel
@@ -83,7 +83,6 @@ Dokumentacja API pygobject.
 %setup -q -n %{module}-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -124,6 +123,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/_gio.so
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/unix.so
 %{py_sitedir}/gtk-2.0/gio/*.py[co]
+%dir %{py_sitedir}/gtk-2.0/girepository
+%dir %{py_sitedir}/gtk-2.0/girepository/overrides
+%{py_sitedir}/gtk-2.0/girepository/overrides/*.py[co]
+%attr(755,root,root) %{py_sitedir}/gtk-2.0/girepository/repo.so
+%{py_sitedir}/gtk-2.0/girepository/*.py[co]
 %dir %{py_sitedir}/gtk-2.0/glib
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/glib/_glib.so
 %{py_sitedir}/gtk-2.0/glib/*.py[co]
@@ -141,6 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pygobject-codegen-2.0
 %attr(755,root,root) %{_libdir}/libpyglib-2.0-python.so
 %{_libdir}/libpyglib-2.0-python.la
+%{_includedir}/pygobject
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/*.pc
 %dir %{_datadir}/%{module}/2.0
