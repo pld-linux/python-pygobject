@@ -5,7 +5,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.20.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.20/%{module}-%{version}.tar.bz2
@@ -105,6 +105,8 @@ cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/*/{*.la,*/*.la}
 
+%py_comp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
+%py_ocomp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
 %py_postclean %{_datadir}/%{module}/2.0/codegen
 
 %clean
