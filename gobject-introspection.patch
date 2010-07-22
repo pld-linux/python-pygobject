@@ -1,0 +1,85 @@
+--- pygobject-2.20.0/girepository/bank.c~	2009-06-17 22:48:38.000000000 +0200
++++ pygobject-2.20.0/girepository/bank.c	2010-07-22 19:56:35.923703860 +0200
+@@ -114,15 +114,15 @@
+     /* FIXME: Removed from metadata format, fix properly by introducing
+        special-case struct */
+ /*     PyModule_AddIntConstant(m, "TYPE_TAG_GSTRING", GI_TYPE_TAG_GSTRING); */
+-    PyModule_AddIntConstant(m, "TYPE_TAG_INT", GI_TYPE_TAG_INT);
++/*     PyModule_AddIntConstant(m, "TYPE_TAG_INT", GI_TYPE_TAG_INT);
+     PyModule_AddIntConstant(m, "TYPE_TAG_UINT", GI_TYPE_TAG_UINT);
+     PyModule_AddIntConstant(m, "TYPE_TAG_LONG", GI_TYPE_TAG_LONG);
+     PyModule_AddIntConstant(m, "TYPE_TAG_ULONG", GI_TYPE_TAG_ULONG);
+     PyModule_AddIntConstant(m, "TYPE_TAG_SSIZE", GI_TYPE_TAG_SSIZE);
+-    PyModule_AddIntConstant(m, "TYPE_TAG_SIZE", GI_TYPE_TAG_SIZE);
++    PyModule_AddIntConstant(m, "TYPE_TAG_SIZE", GI_TYPE_TAG_SIZE); */
+     PyModule_AddIntConstant(m, "TYPE_TAG_FLOAT", GI_TYPE_TAG_FLOAT);
+     PyModule_AddIntConstant(m, "TYPE_TAG_DOUBLE", GI_TYPE_TAG_DOUBLE);
+-    PyModule_AddIntConstant(m, "TYPE_TAG_TIME_T", GI_TYPE_TAG_TIME_T);
++/*     PyModule_AddIntConstant(m, "TYPE_TAG_TIME_T", GI_TYPE_TAG_TIME_T); */
+     PyModule_AddIntConstant(m, "TYPE_TAG_GTYPE", GI_TYPE_TAG_GTYPE);
+     PyModule_AddIntConstant(m, "TYPE_TAG_UTF8", GI_TYPE_TAG_UTF8);
+     PyModule_AddIntConstant(m, "TYPE_TAG_FILENAME", GI_TYPE_TAG_FILENAME);
+--- pygobject-2.20.0/girepository/bank-argument.c~	2009-06-17 22:48:38.000000000 +0200
++++ pygobject-2.20.0/girepository/bank-argument.c	2010-07-22 20:01:00.901173773 +0200
+@@ -43,9 +43,6 @@
+     case GI_TYPE_TAG_UINT8:
+         arg.v_uint8 = PyInt_AsLong(object);
+         break;
+-    case GI_TYPE_TAG_UINT:
+-        arg.v_uint = PyInt_AsLong(object);
+-        break;
+     case GI_TYPE_TAG_UINT16:
+         arg.v_uint16 = PyInt_AsLong(object);
+         break;
+@@ -63,15 +60,6 @@
+     case GI_TYPE_TAG_INT8:
+         arg.v_int8 = PyInt_AsLong(object);
+         break;
+-    case GI_TYPE_TAG_INT:
+-        arg.v_int = PyInt_AsLong(object);
+-        break;
+-    case GI_TYPE_TAG_LONG:
+-        arg.v_long = PyInt_AsLong(object);
+-        break;
+-    case GI_TYPE_TAG_ULONG:
+-        arg.v_ulong = PyInt_AsLong(object);
+-        break;
+     case GI_TYPE_TAG_BOOLEAN:
+         arg.v_boolean = PyInt_AsLong(object);
+         break;
+@@ -184,9 +172,6 @@
+ 
+     // FIXME: Doesn't seem right to have this here:
+     switch (type_tag) {
+-    case GI_TYPE_TAG_INT:
+-        size = sizeof(int);
+-        break;
+     case GI_TYPE_TAG_INTERFACE:
+         size = sizeof(gpointer);
+         break;
+@@ -248,9 +233,6 @@
+     case GI_TYPE_TAG_UINT8:
+         obj = PyInt_FromLong(arg->v_uint8);
+         break;
+-    case GI_TYPE_TAG_UINT:
+-        obj = PyInt_FromLong(arg->v_uint);
+-        break;
+     case GI_TYPE_TAG_UINT16:
+         obj = PyInt_FromLong(arg->v_uint16);
+         break;
+@@ -260,15 +242,6 @@
+     case GI_TYPE_TAG_UINT64:
+         obj = PyLong_FromUnsignedLongLong(arg->v_uint64);
+         break;
+-    case GI_TYPE_TAG_INT:
+-        obj = PyInt_FromLong(arg->v_int);
+-        break;
+-    case GI_TYPE_TAG_LONG:
+-        obj = PyInt_FromLong(arg->v_long);
+-        break;
+-    case GI_TYPE_TAG_ULONG:
+-        obj = PyInt_FromLong(arg->v_ulong);
+-        break;
+     case GI_TYPE_TAG_INT8:
+         obj = PyInt_FromLong(arg->v_int8);
+         break;
