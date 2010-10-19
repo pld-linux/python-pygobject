@@ -24,6 +24,7 @@ BuildRequires:	libxslt-progs >= 1.1.22
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.3.5
 %pyrequires_eq	python-modules
+BuildRequires:	python-pycairo-devel >= 1.0.2
 BuildRequires:	rpm-pythonprov
 Requires:	glib2 >= 1:2.16.0
 Provides:	python-pygtk-gobject
