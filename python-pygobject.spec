@@ -4,19 +4,19 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.20.0
-Release:	5
+Version:	2.26.0
+Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.20/%{module}-%{version}.tar.bz2
-# Source0-md5:	10e1fb79be3d698476a28b1e1b0c5640
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.26/%{module}-%{version}.tar.bz2
+# Source0-md5:	7e3352c4b83ce8dc15290e86dd9c2be0
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
-Patch2:		gobject-introspection.patch
+Patch2:		%{name}-link.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	glib2-devel >= 1:2.16.0
+BuildRequires:	glib2-devel >= 1:2.22.4
 BuildRequires:	gobject-introspection-devel >= 0.6.3
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool
@@ -127,11 +127,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/_gio.so
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/unix.so
 %{py_sitedir}/gtk-2.0/gio/*.py[co]
-%dir %{py_sitedir}/gtk-2.0/girepository
-%dir %{py_sitedir}/gtk-2.0/girepository/overrides
-%{py_sitedir}/gtk-2.0/girepository/overrides/*.py[co]
-%attr(755,root,root) %{py_sitedir}/gtk-2.0/girepository/repo.so
-%{py_sitedir}/gtk-2.0/girepository/*.py[co]
+%dir %{py_sitedir}/gtk-2.0/gi
+%dir %{py_sitedir}/gtk-2.0/gi/overrides
+%dir %{py_sitedir}/gtk-2.0/gi/repository
+%{py_sitedir}/gtk-2.0/gi/overrides/*.py[co]
+%{py_sitedir}/gtk-2.0/gi/repository/*.py[co]
+%{py_sitedir}/gtk-2.0/gi/*.py[co]
+%{py_sitedir}/gtk-2.0/gi/_gi.so
+%{py_sitedir}/gtk-2.0/gi/_gi_cairo.so
 %dir %{py_sitedir}/gtk-2.0/glib
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/glib/_glib.so
 %{py_sitedir}/gtk-2.0/glib/*.py[co]
@@ -149,7 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pygobject-codegen-2.0
 %attr(755,root,root) %{_libdir}/libpyglib-2.0-python.so
 %{_libdir}/libpyglib-2.0-python.la
-%{_includedir}/pygobject
+#%%{_includedir}/pygobject
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/*.pc
 %dir %{_datadir}/%{module}/2.0
