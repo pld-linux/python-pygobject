@@ -32,7 +32,7 @@ Obsoletes:	python-pygtk-gobject
 Conflicts:	python-pygtk < 1:1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# don't check for unresolved symbols (it's MODULE, not LIBRARY)
+# python provides Py* and _Py* symbols at runtime
 %define		skip_post_check_so	libpyglib-2.0-python.so.*
 
 %description
