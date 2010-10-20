@@ -17,15 +17,15 @@ URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	glib2-devel >= 1:2.22.4
-BuildRequires:	gobject-introspection-devel >= 0.6.3
+BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.22
 BuildRequires:	pkgconfig
-BuildRequires:	python-devel >= 1:2.3.5
-%pyrequires_eq	python-modules
+BuildRequires:	python-devel >= 1:2.5.2
 BuildRequires:	python-pycairo-devel >= 1.0.2
 BuildRequires:	rpm-pythonprov
+%pyrequires_eq	python-modules
 Requires:	glib2 >= 1:2.22.4
 Provides:	python-pygtk-gobject
 Obsoletes:	python-pygtk-glarea
@@ -44,9 +44,9 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.16.0
+Requires:	glib2-devel >= 1:2.22.4
 Requires:	libffi-devel >= 3.0
-Requires:	python-devel >= 1:2.3.5
+Requires:	python-devel >= 1:2.5.2
 
 %description devel
 This package contains files required to build wrappers for GObject
@@ -93,7 +93,8 @@ Dokumentacja API pygobject.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--disable-silent-rules
 %{__make}
 
 %install
@@ -106,7 +107,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/*/{*.la,*/*.la}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*/*.la
 
 %py_comp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
@@ -130,12 +131,12 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/gtk-2.0/gio/*.py[co]
 %dir %{py_sitedir}/gtk-2.0/gi
 %dir %{py_sitedir}/gtk-2.0/gi/overrides
-%dir %{py_sitedir}/gtk-2.0/gi/repository
 %{py_sitedir}/gtk-2.0/gi/overrides/*.py[co]
+%dir %{py_sitedir}/gtk-2.0/gi/repository
 %{py_sitedir}/gtk-2.0/gi/repository/*.py[co]
 %{py_sitedir}/gtk-2.0/gi/*.py[co]
-%{py_sitedir}/gtk-2.0/gi/_gi.so
-%{py_sitedir}/gtk-2.0/gi/_gi_cairo.so
+%attr(755,root,root) %{py_sitedir}/gtk-2.0/gi/_gi.so
+%attr(755,root,root) %{py_sitedir}/gtk-2.0/gi/_gi_cairo.so
 %dir %{py_sitedir}/gtk-2.0/glib
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/glib/_glib.so
 %{py_sitedir}/gtk-2.0/glib/*.py[co]
@@ -143,7 +144,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gobject/_gobject.so
 %{py_sitedir}/gtk-2.0/gobject/*.py[co]
 %{py_sitedir}/gtk-2.0/*.py[co]
-%{py_sitedir}/*.py[co]
+%{py_sitedir}/pygtk.py[co]
 %{py_sitedir}/pygtk.pth
 %dir %{_datadir}/%{module}
 %dir %{_datadir}/%{module}/xsl
@@ -153,9 +154,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pygobject-codegen-2.0
 %attr(755,root,root) %{_libdir}/libpyglib-2.0-python.so
 %{_libdir}/libpyglib-2.0-python.la
-#%%{_includedir}/pygobject
 %{_includedir}/pygtk-2.0
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/pygobject-2.0.pc
 %dir %{_datadir}/%{module}/2.0
 %dir %{_datadir}/%{module}/2.0/codegen
 %{_datadir}/%{module}/2.0/codegen/*.py[co]
