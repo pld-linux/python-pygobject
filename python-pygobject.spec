@@ -5,7 +5,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.26.0
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.26/%{module}-%{version}.tar.bz2
@@ -26,6 +26,7 @@ BuildRequires:	python-pycairo-devel >= 1.0.2
 BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-modules
 Requires:	glib2 >= 1:2.22.4
+Requires:	gobject-introspection >= 0.9.5
 Provides:	python-pygtk-gobject
 Obsoletes:	python-pygtk-glarea
 Obsoletes:	python-pygtk-gobject
