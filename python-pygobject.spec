@@ -1,4 +1,7 @@
 #
+%bcond_without	python2
+%bcond_without	python3
+#
 %define		module	pygobject
 #
 Summary:	Python bindings for GObject library
@@ -23,10 +26,17 @@ BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.22
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-pythonprov
+%if %{with python2}
 BuildRequires:	python-devel >= 1:2.5.2
 BuildRequires:	python-pycairo-devel >= 1.0.2
-BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-modules
+%endif
+%if %{with python3}
+BuildRequires:	python3
+BuildRequires:	python3-devel
+BuildRequires:	python3-modules
+%endif
 Requires:	glib2 >= 1:2.22.4
 Requires:	gobject-introspection >= 0.9.5
 Provides:	python-pygtk-gobject
@@ -110,43 +120,56 @@ Dokumentacja API pygobject.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+%if %{with python3}
 mkdir py3
 cd py3
 ../%configure \
 	PYTHON=/usr/bin/python3 \
 	--disable-silent-rules
-%{__make} -j1
+%{__make}
 cd ..
+%endif
+%if %{with python2}
 mkdir py2
 cd py2
 ../%configure \
 	PYTHON=%{__python} \
 	--disable-silent-rules
-%{__make} -j1
+%{__make}
 cd ..
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+%if %{with python3}
 cd py3
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TARGET_DIR=%{_gtkdocdir}/%{module}
-cd ../py2
+cd ..
+%endif
+%if %{with python2}
+cd py2
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TARGET_DIR=%{_gtkdocdir}/%{module}
 cd ..
+%endif
 
 cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__rm} $RPM_BUILD_ROOT{%{py_sitedir},%{py3_sitedir}}/gtk-2.0/*/*.la
+%{__rm} -f $RPM_BUILD_ROOT{%{py_sitedir},%{py3_sitedir}}/gtk-2.0/*/*.la
 
+%if %{with python2}
 %py_comp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
 %py_postclean %{_datadir}/%{module}/2.0/codegen
+%endif
+%if %{with python3}
 %py3_postclean
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -154,6 +177,7 @@ rm -rf $RPM_BUILD_ROOT
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
+%if %{with python2}
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
@@ -199,7 +223,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{module}/2.0/defs/*.override
 %{_datadir}/%{module}/xsl/*.py
 %{_datadir}/%{module}/xsl/*.xsl
+%endif
 
+%if %{with python3}
 %files -n python3-pygobject
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
@@ -225,6 +251,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitedir}/gtk-2.0/*.py[co]
 %{py3_sitedir}/pygtk.py[co]
 %{py3_sitedir}/pygtk.pth
+%endif
  
 %files examples
 %defattr(644,root,root,755)
