@@ -5,13 +5,15 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.26.0
-Release:	3
+Release:	4
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.26/%{module}-%{version}.tar.bz2
 # Source0-md5:	7e3352c4b83ce8dc15290e86dd9c2be0
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
+Patch2:		gio.patch
+Patch3:		py3.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
@@ -34,7 +36,7 @@ Conflicts:	python-pygtk < 1:1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # python provides Py* and _Py* symbols at runtime
-%define		skip_post_check_so	libpyglib-2.0-python.so.*
+%define		skip_post_check_so	libpyglib-2.0-python3?.so.*
 
 %description
 Python bindings for GObject library.
@@ -58,6 +60,17 @@ addon libraries so that they interoperate with Python bindings.
 %description devel -l pl.UTF-8
 Pakiet zawiera pliki wymagane do zbudowania funkcji do biblioteki
 GObject, tak by mogły te biblioteki kooperować z wiązaniami Pythona.
+
+%package -n python3-pygobject
+Summary:	Python 3.x bindings for GObject library
+Summary(pl.UTF-8):	Wiązania Pythona 3.x do biblioteki GObject
+Group:		Libraries/Python
+
+%description -n python3-pygobject
+Python 3.x bindings for GObject library.
+
+%description -l pl.UTF-8
+Wiązania Pythona 3.x do biblioteki GObject.
 
 %package examples
 Summary:	Example programs for GObject library
@@ -88,6 +101,8 @@ Dokumentacja API pygobject.
 %setup -q -n %{module}-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -95,25 +110,43 @@ Dokumentacja API pygobject.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure \
+mkdir py3
+cd py3
+../%configure \
+	PYTHON=/usr/bin/python3 \
 	--disable-silent-rules
-%{__make}
+%{__make} -j1
+cd ..
+mkdir py2
+cd py2
+../%configure \
+	PYTHON=%{__python} \
+	--disable-silent-rules
+%{__make} -j1
+cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+cd py3
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TARGET_DIR=%{_gtkdocdir}/%{module}
+cd ../py2
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	TARGET_DIR=%{_gtkdocdir}/%{module}
+cd ..
 
 cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/gtk-2.0/*/*.la
+%{__rm} $RPM_BUILD_ROOT{%{py_sitedir},%{py3_sitedir}}/gtk-2.0/*/*.la
 
 %py_comp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
 %py_postclean %{_datadir}/%{module}/2.0/codegen
+%py3_postclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -167,6 +200,32 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{module}/xsl/*.py
 %{_datadir}/%{module}/xsl/*.xsl
 
+%files -n python3-pygobject
+%defattr(644,root,root,755)
+%doc AUTHORS ChangeLog NEWS README
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python3.so.0
+%dir %{py3_sitedir}/gtk-2.0
+%dir %{py3_sitedir}/gtk-2.0/gio
+%{py3_sitedir}/gtk-2.0/gio/*.py[co]
+%dir %{py3_sitedir}/gtk-2.0/gi
+%dir %{py3_sitedir}/gtk-2.0/gi/overrides
+%{py3_sitedir}/gtk-2.0/gi/overrides/*.py[co]
+%dir %{py3_sitedir}/gtk-2.0/gi/repository
+%{py3_sitedir}/gtk-2.0/gi/repository/*.py[co]
+%{py3_sitedir}/gtk-2.0/gi/*.py[co]
+%attr(755,root,root) %{py3_sitedir}/gtk-2.0/gi/_gi.so
+%attr(755,root,root) %{py3_sitedir}/gtk-2.0/gi/_gi_cairo.so
+%dir %{py3_sitedir}/gtk-2.0/glib
+%attr(755,root,root) %{py3_sitedir}/gtk-2.0/glib/_glib.so
+%{py3_sitedir}/gtk-2.0/glib/*.py[co]
+%dir %{py3_sitedir}/gtk-2.0/gobject
+%attr(755,root,root) %{py3_sitedir}/gtk-2.0/gobject/_gobject.so
+%{py3_sitedir}/gtk-2.0/gobject/*.py[co]
+%{py3_sitedir}/gtk-2.0/*.py[co]
+%{py3_sitedir}/pygtk.py[co]
+%{py3_sitedir}/pygtk.pth
+ 
 %files examples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
