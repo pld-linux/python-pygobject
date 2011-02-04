@@ -79,7 +79,7 @@ Group:		Libraries/Python
 %description -n python3-pygobject
 Python 3.x bindings for GObject library.
 
-%description -l pl.UTF-8
+%description -n python3-pygobject -l pl.UTF-8
 Wiązania Pythona 3.x do biblioteki GObject.
 
 %package examples
