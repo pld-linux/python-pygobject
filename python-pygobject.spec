@@ -7,12 +7,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.27.0
+Version:	2.27.90
 Release:	0.1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.27/%{module}-%{version}.tar.bz2
-# Source0-md5:	9e2496ffa4e55911f94232e29ee9f146
+# Source0-md5:	a8abc884188d629020680d80ac8047bb
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
 Patch2:		gio.patch
@@ -20,7 +20,7 @@ URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	glib2-devel >= 1:2.22.4
-BuildRequires:	gobject-introspection-devel >= 0.9.5
+BuildRequires:	gobject-introspection-devel >= 0.10.2
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.22
@@ -187,20 +187,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/_gio.so
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/unix.so
 %{py_sitedir}/gtk-2.0/gio/*.py[co]
-%dir %{py_sitedir}/gtk-2.0/gi
-%dir %{py_sitedir}/gtk-2.0/gi/overrides
-%{py_sitedir}/gtk-2.0/gi/overrides/*.py[co]
-%dir %{py_sitedir}/gtk-2.0/gi/repository
-%{py_sitedir}/gtk-2.0/gi/repository/*.py[co]
-%{py_sitedir}/gtk-2.0/gi/*.py[co]
-%attr(755,root,root) %{py_sitedir}/gtk-2.0/gi/_gi.so
-%attr(755,root,root) %{py_sitedir}/gtk-2.0/gi/_gi_cairo.so
-%dir %{py_sitedir}/gtk-2.0/glib
-%attr(755,root,root) %{py_sitedir}/gtk-2.0/glib/_glib.so
-%{py_sitedir}/gtk-2.0/glib/*.py[co]
-%dir %{py_sitedir}/gtk-2.0/gobject
-%attr(755,root,root) %{py_sitedir}/gtk-2.0/gobject/_gobject.so
-%{py_sitedir}/gtk-2.0/gobject/*.py[co]
+%dir %{py_sitedir}/gi
+%dir %{py_sitedir}/gi/overrides
+%{py_sitedir}/gi/overrides/*.py[co]
+%dir %{py_sitedir}/gi/repository
+%{py_sitedir}/gi/repository/*.py[co]
+%{py_sitedir}/gi/*.py[co]
+%attr(755,root,root) %{py_sitedir}/gi/_gi.so
+%attr(755,root,root) %{py_sitedir}/gi/_gi_cairo.so
+%dir %{py_sitedir}/glib
+%attr(755,root,root) %{py_sitedir}/glib/_glib.so
+%{py_sitedir}/glib/*.py[co]
+%dir %{py_sitedir}/gobject
+%attr(755,root,root) %{py_sitedir}/gobject/_gobject.so
+%{py_sitedir}/gobject/*.py[co]
 %{py_sitedir}/gtk-2.0/*.py[co]
 %{py_sitedir}/pygtk.py[co]
 %{py_sitedir}/pygtk.pth
@@ -233,25 +233,25 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/gtk-2.0
 %dir %{py3_sitedir}/gtk-2.0/gio
 %{py3_sitedir}/gtk-2.0/gio/*.py[co]
-%dir %{py3_sitedir}/gtk-2.0/gi
-%dir %{py3_sitedir}/gtk-2.0/gi/overrides
-%{py3_sitedir}/gtk-2.0/gi/overrides/*.py[co]
-%dir %{py3_sitedir}/gtk-2.0/gi/repository
-%{py3_sitedir}/gtk-2.0/gi/repository/*.py[co]
-%{py3_sitedir}/gtk-2.0/gi/*.py[co]
-%attr(755,root,root) %{py3_sitedir}/gtk-2.0/gi/_gi.so
-%attr(755,root,root) %{py3_sitedir}/gtk-2.0/gi/_gi_cairo.so
-%dir %{py3_sitedir}/gtk-2.0/glib
-%attr(755,root,root) %{py3_sitedir}/gtk-2.0/glib/_glib.so
-%{py3_sitedir}/gtk-2.0/glib/*.py[co]
-%dir %{py3_sitedir}/gtk-2.0/gobject
-%attr(755,root,root) %{py3_sitedir}/gtk-2.0/gobject/_gobject.so
-%{py3_sitedir}/gtk-2.0/gobject/*.py[co]
+%dir %{py3_sitedir}/gi
+%dir %{py3_sitedir}/gi/overrides
+%{py3_sitedir}/gi/overrides/*.py[co]
+%dir %{py3_sitedir}/gi/repository
+%{py3_sitedir}/gi/repository/*.py[co]
+%{py3_sitedir}/gi/*.py[co]
+%attr(755,root,root) %{py3_sitedir}/gi/_gi.so
+%attr(755,root,root) %{py3_sitedir}/gi/_gi_cairo.so
+%dir %{py3_sitedir}/glib
+%attr(755,root,root) %{py3_sitedir}/glib/_glib.so
+%{py3_sitedir}/glib/*.py[co]
+%dir %{py3_sitedir}/gobject
+%attr(755,root,root) %{py3_sitedir}/gobject/_gobject.so
+%{py3_sitedir}/gobject/*.py[co]
 %{py3_sitedir}/gtk-2.0/*.py[co]
 %{py3_sitedir}/pygtk.py[co]
 %{py3_sitedir}/pygtk.pth
 %endif
- 
+
 %files examples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
