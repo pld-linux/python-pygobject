@@ -7,12 +7,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.27.90
+Version:	2.27.91
 Release:	0.1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.27/%{module}-%{version}.tar.bz2
-# Source0-md5:	a8abc884188d629020680d80ac8047bb
+# Source0-md5:	2b11a3050264721aac83188224b093a8
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
 Patch2:		gio.patch
@@ -82,6 +82,23 @@ Python 3.x bindings for GObject library.
 %description -l pl.UTF-8
 Wiązania Pythona 3.x do biblioteki GObject.
 
+%package -n python3-pygobject-devel
+Summary:	Python bindings for GObject library
+Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
+Group:		Development/Languages/Python
+Requires:	python3-pygobject = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.22.4
+Requires:	libffi-devel >= 3.0
+Requires:	python3-devel
+
+%description -n python3-pygobject-devel
+This package contains files required to build wrappers for GObject
+addon libraries so that they interoperate with Python bindings.
+
+%description -n python3-pygobject-devel -l pl.UTF-8
+Pakiet zawiera pliki wymagane do zbudowania funkcji do biblioteki
+GObject, tak by mogły te biblioteki kooperować z wiązaniami Pythona.
+
 %package examples
 Summary:	Example programs for GObject library
 Summary(pl.UTF-8):	Programy przykładowe dla biblioteki GObject
@@ -123,6 +140,7 @@ Dokumentacja API pygobject.
 mkdir py3
 cd py3
 ../%configure \
+	py_cv_mod_thread_=yes \
 	PYTHON=/usr/bin/python3 \
 	--disable-silent-rules
 %{__make}
@@ -159,7 +177,9 @@ cd ..
 
 cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__rm} -f $RPM_BUILD_ROOT{%{py_sitedir},%{py3_sitedir}}/gtk-2.0/*/*.la
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/{gtk-2.0/,}*/*.la \
+	$RPM_BUILD_ROOT%{py3_sitedir}/*/*.la \
+	$RPM_BUILD_ROOT%{_libdir}/*.la
 
 %if %{with python2}
 %py_comp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
@@ -211,7 +231,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pygobject-codegen-2.0
 %attr(755,root,root) %{_libdir}/libpyglib-2.0-python.so
-%{_libdir}/libpyglib-2.0-python.la
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/pygobject-2.0.pc
 %dir %{_datadir}/%{module}/2.0
@@ -250,6 +269,10 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitedir}/gtk-2.0/*.py[co]
 %{py3_sitedir}/pygtk.py[co]
 %{py3_sitedir}/pygtk.pth
+
+%files -n python3-pygobject-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3.so
 %endif
 
 %files examples
