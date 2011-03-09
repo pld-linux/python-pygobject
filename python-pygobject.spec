@@ -7,12 +7,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.27.91
+Version:	2.28.0
 Release:	0.1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.27/%{module}-%{version}.tar.bz2
-# Source0-md5:	2b11a3050264721aac83188224b093a8
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.bz2
+# Source0-md5:	d6c373b263633cdb0675de04118d00ef
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
 Patch2:		gio.patch
@@ -140,7 +140,6 @@ Dokumentacja API pygobject.
 mkdir py3
 cd py3
 ../%configure \
-	py_cv_mod_thread_=yes \
 	PYTHON=/usr/bin/python3 \
 	--disable-silent-rules
 %{__make}
