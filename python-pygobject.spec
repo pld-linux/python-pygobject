@@ -8,7 +8,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.28.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.bz2
@@ -161,21 +161,21 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %if %{with python3}
 cd py3
-%{__make} install \
+%{__make} -j 1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TARGET_DIR=%{_gtkdocdir}/%{module}
 cd ..
 %endif
 %if %{with python2}
 cd py2
-%{__make} install \
+%{__make} -j 1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TARGET_DIR=%{_gtkdocdir}/%{module}
 cd ..
 %endif
 
 cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-
+/
 %{__rm} $RPM_BUILD_ROOT%{py_sitedir}/{gtk-2.0/,}*/*.la \
 	$RPM_BUILD_ROOT%{py3_sitedir}/*/*.la \
 	$RPM_BUILD_ROOT%{_libdir}/*.la
