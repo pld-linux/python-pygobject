@@ -7,12 +7,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.28.2
+Version:	2.28.3
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.bz2
-# Source0-md5:	c4478c0d45ca0b2412a90fef704a797b
+# Source0-md5:	aa64900b274c4661a5c32e52922977f9
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
 Patch2:		gio.patch
