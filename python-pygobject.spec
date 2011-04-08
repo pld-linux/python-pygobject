@@ -176,16 +176,16 @@ cd ..
 
 cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/{gtk-2.0/,}*/*.la \
-	$RPM_BUILD_ROOT%{py3_sitedir}/*/*.la \
-	$RPM_BUILD_ROOT%{_libdir}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %if %{with python2}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/{gtk-2.0/,}*/*.la
 %py_comp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/%{module}/2.0/codegen
 %py_postclean %{_datadir}/%{module}/2.0/codegen
 %endif
 %if %{with python3}
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/*/*.la
 %py3_postclean
 %endif
 
