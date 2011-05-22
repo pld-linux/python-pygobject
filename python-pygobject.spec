@@ -1,6 +1,7 @@
 #
-%bcond_without	python2
-%bcond_without	python3
+# Conditional build:
+%bcond_without	python2		# Python 2.x module
+%bcond_without	python3		# Python 3.x module
 #
 %define		module	pygobject
 #
@@ -16,6 +17,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{versi
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
 Patch2:		gio.patch
+Patch3:		%{name}-pycairo.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
@@ -129,6 +131,7 @@ Dokumentacja API pygobject.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -160,18 +163,14 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %if %{with python3}
-cd py3
-%{__make} -j 1 install \
+%{__make} -C py3 -j 1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TARGET_DIR=%{_gtkdocdir}/%{module}
-cd ..
 %endif
 %if %{with python2}
-cd py2
-%{__make} -j 1 install \
+%{__make} -C py2 -j 1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TARGET_DIR=%{_gtkdocdir}/%{module}
-cd ..
 %endif
 
 cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
