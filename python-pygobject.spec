@@ -8,12 +8,12 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.28.4
+Version:	2.28.6
 Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.bz2
-# Source0-md5:	14e700d5f4b8af00a68a6bcdd65a8db9
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.xz
+# Source0-md5:	9415cb7f2b3a847f2310ccea258b101e
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
 Patch2:		gio.patch
@@ -21,16 +21,18 @@ Patch3:		%{name}-pycairo.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7
-BuildRequires:	glib2-devel >= 1:2.22.4
+BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gobject-introspection-devel >= 0.10.2
 BuildRequires:	libffi-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs >= 1.1.22
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.5.2
-BuildRequires:	python-pycairo-devel >= 1.0.2
+BuildRequires:	python-pycairo-devel >= 1.2.0
 %pyrequires_eq	python-modules
 %endif
 %if %{with python3}
@@ -39,7 +41,7 @@ BuildRequires:	python3-devel
 BuildRequires:	python3-modules
 BuildRequires:	python3-pycairo-devel >= 1.8.10
 %endif
-Requires:	glib2 >= 1:2.22.4
+Requires:	glib2 >= 1:2.24.0
 Requires:	gobject-introspection >= 0.9.5
 Provides:	python-pygtk-gobject
 Obsoletes:	python-pygtk-glarea
@@ -61,7 +63,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.22.4
+Requires:	glib2-devel >= 1:2.24.0
 Requires:	libffi-devel >= 3.0
 Requires:	python-devel >= 1:2.5.2
 
@@ -88,7 +90,7 @@ Wiązania Pythona 3.x do biblioteki GObject.
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
-Requires:	glib2-devel >= 1:2.22.4
+Requires:	glib2-devel >= 1:2.24.0
 Requires:	libffi-devel >= 3.0
 Requires:	python3-devel
 Requires:	python3-pygobject = %{version}-%{release}
