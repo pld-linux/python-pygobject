@@ -9,7 +9,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.28.6
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.xz
@@ -187,7 +187,6 @@ cp -a examples/*.py $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %endif
 %if %{with python3}
 %{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/*/*.la
-%py3_postclean
 %endif
 
 %clean
@@ -251,24 +250,32 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python3.so.0
 %dir %{py3_sitedir}/gtk-2.0
 %dir %{py3_sitedir}/gtk-2.0/gio
-%{py3_sitedir}/gtk-2.0/gio/*.py[co]
+%{py3_sitedir}/gtk-2.0/gio/*.py*
+#%{py3_sitedir}/gtk-2.0/gio/__pycache__
 %dir %{py3_sitedir}/gi
 %dir %{py3_sitedir}/gi/overrides
-%{py3_sitedir}/gi/overrides/*.py[co]
+%{py3_sitedir}/gi/overrides/*.py*
+#%{py3_sitedir}/gi/overrides/__pycache__
 %dir %{py3_sitedir}/gi/repository
-%{py3_sitedir}/gi/repository/*.py[co]
-%{py3_sitedir}/gi/*.py[co]
-%attr(755,root,root) %{py3_sitedir}/gi/_gi.so
-%attr(755,root,root) %{py3_sitedir}/gi/_gi_cairo.so
+%{py3_sitedir}/gi/repository/*.py*
+#%{py3_sitedir}/gi/repository/__pycache__
+%{py3_sitedir}/gi/*.py*
+#%{py3_sitedir}/gi/__pycache__
+%attr(755,root,root) %{py3_sitedir}/gi/_gi.*so
+%attr(755,root,root) %{py3_sitedir}/gi/_gi_cairo.*so
 %dir %{py3_sitedir}/glib
-%attr(755,root,root) %{py3_sitedir}/glib/_glib.so
-%{py3_sitedir}/glib/*.py[co]
+%attr(755,root,root) %{py3_sitedir}/glib/_glib.*so
+%{py3_sitedir}/glib/*.py*
+#%{py3_sitedir}/glib/__pycache__
 %dir %{py3_sitedir}/gobject
-%attr(755,root,root) %{py3_sitedir}/gobject/_gobject.so
-%{py3_sitedir}/gobject/*.py[co]
-%{py3_sitedir}/gtk-2.0/*.py[co]
-%{py3_sitedir}/pygtk.py[co]
+%attr(755,root,root) %{py3_sitedir}/gobject/_gobject.*so
+%{py3_sitedir}/gobject/*.py*
+#%{py3_sitedir}/gobject/__pycache__
+%{py3_sitedir}/gtk-2.0/*.py*
+#%{py3_sitedir}/gtk-2.0/__pycache__
+%{py3_sitedir}/pygtk.py*
 %{py3_sitedir}/pygtk.pth
+#%{py3_sitedir}/__pycache__
 
 %files -n python3-pygobject-devel
 %defattr(644,root,root,755)
