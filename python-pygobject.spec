@@ -9,7 +9,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.28.6
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.xz
@@ -146,6 +146,7 @@ mkdir py3
 cd py3
 ../%configure \
 	PYTHON=/usr/bin/python3 \
+	--disable-introspection \
 	--disable-silent-rules
 %{__make}
 cd ..
@@ -155,6 +156,7 @@ mkdir py2
 cd py2
 ../%configure \
 	PYTHON=%{__python} \
+	--disable-introspection \
 	--disable-silent-rules
 %{__make}
 cd ..
@@ -206,14 +208,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/_gio.so
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/unix.so
 %{py_sitedir}/gtk-2.0/gio/*.py[co]
-%dir %{py_sitedir}/gi
-%dir %{py_sitedir}/gi/overrides
-%{py_sitedir}/gi/overrides/*.py[co]
-%dir %{py_sitedir}/gi/repository
-%{py_sitedir}/gi/repository/*.py[co]
-%{py_sitedir}/gi/*.py[co]
-%attr(755,root,root) %{py_sitedir}/gi/_gi.so
-%attr(755,root,root) %{py_sitedir}/gi/_gi_cairo.so
 %dir %{py_sitedir}/glib
 %attr(755,root,root) %{py_sitedir}/glib/_glib.so
 %{py_sitedir}/glib/*.py[co]
@@ -252,17 +246,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py3_sitedir}/gtk-2.0/gio
 %{py3_sitedir}/gtk-2.0/gio/*.py*
 #%{py3_sitedir}/gtk-2.0/gio/__pycache__
-%dir %{py3_sitedir}/gi
-%dir %{py3_sitedir}/gi/overrides
-%{py3_sitedir}/gi/overrides/*.py*
-#%{py3_sitedir}/gi/overrides/__pycache__
-%dir %{py3_sitedir}/gi/repository
-%{py3_sitedir}/gi/repository/*.py*
-#%{py3_sitedir}/gi/repository/__pycache__
-%{py3_sitedir}/gi/*.py*
-#%{py3_sitedir}/gi/__pycache__
-%attr(755,root,root) %{py3_sitedir}/gi/_gi.*so
-%attr(755,root,root) %{py3_sitedir}/gi/_gi_cairo.*so
 %dir %{py3_sitedir}/glib
 %attr(755,root,root) %{py3_sitedir}/glib/_glib.*so
 %{py3_sitedir}/glib/*.py*
