@@ -2,14 +2,13 @@
 # Conditional build:
 %bcond_without	python2		# Python 2.x module
 %bcond_without	python3		# Python 3.x module
-#
+
 %define		module	pygobject
-#
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.28.6
-Release:	5
+Release:	6
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.xz
@@ -33,7 +32,7 @@ BuildRequires:	xz
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.5.2
 BuildRequires:	python-pycairo-devel >= 1.2.0
-%pyrequires_eq	python-modules
+Requires:	python-modules
 %endif
 %if %{with python3}
 BuildRequires:	python3
@@ -121,6 +120,9 @@ Summary:	pygobject API documentation
 Summary(pl.UTF-8):	Dokumentacja API pygobject
 Group:		Documentation
 Requires:	gtk-doc-common
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 pygobject API documentation.
