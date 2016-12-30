@@ -8,7 +8,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.28.6
-Release:	13
+Release:	14
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.xz
@@ -49,7 +49,7 @@ Conflicts:	python-pygtk < 1:1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # python provides Py* and _Py* symbols at runtime
-%define		skip_post_check_so	libpyglib-2.0-python3?.so.*
+%define		skip_post_check_so	libpyglib-2.0-python[23]?.so.*
 
 %description
 Python bindings for GObject library.
@@ -203,8 +203,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libpyglib-2.0-python.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python.so.0
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python2*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python2*.so.0
 %dir %{py_sitedir}/gtk-2.0
 %dir %{py_sitedir}/gtk-2.0/gio
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/_gio.so
@@ -225,7 +225,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pygobject-codegen-2.0
-%attr(755,root,root) %{_libdir}/libpyglib-2.0-python.so
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python2*.so
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/pygobject-2.0.pc
 %dir %{_datadir}/%{module}/2.0
@@ -242,8 +242,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python3-pygobject
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python3.so.0
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python3*.so.0
 %dir %{py3_sitedir}/gtk-2.0
 %dir %{py3_sitedir}/gtk-2.0/gio
 %{py3_sitedir}/gtk-2.0/gio/*.py*
@@ -264,7 +264,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python3-pygobject-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3.so
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3*.so
 %endif
 
 %files examples
