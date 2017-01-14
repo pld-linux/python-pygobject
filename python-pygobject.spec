@@ -8,7 +8,7 @@ Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.28.6
-Release:	14
+Release:	15
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.xz
@@ -19,7 +19,7 @@ Patch2:		gio.patch
 Patch3:		%{name}-pycairo.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake >= 1:1.7
+BuildRequires:	automake >= 1:1.12.5
 BuildRequires:	glib2-devel >= 1:2.24.0
 BuildRequires:	gobject-introspection-devel >= 0.10.2
 BuildRequires:	libffi-devel >= 3.0
@@ -172,7 +172,11 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %{__make} -C py3 -j 1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TARGET_DIR=%{_gtkdocdir}/%{module}
+
+# only python2 codegen is packaged
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/pygobject/2.0/codegen
 %endif
+
 %if %{with python2}
 %{__make} -C py2 -j 1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -203,8 +207,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libpyglib-2.0-python2*.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python2*.so.0
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python2.so.0
 %dir %{py_sitedir}/gtk-2.0
 %dir %{py_sitedir}/gtk-2.0/gio
 %attr(755,root,root) %{py_sitedir}/gtk-2.0/gio/_gio.so
@@ -225,7 +229,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/pygobject-codegen-2.0
-%attr(755,root,root) %{_libdir}/libpyglib-2.0-python2*.so
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python2.so
 %{_includedir}/pygtk-2.0
 %{_pkgconfigdir}/pygobject-2.0.pc
 %dir %{_datadir}/%{module}/2.0
@@ -242,29 +246,29 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python3-pygobject
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3*.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python3*.so.0
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpyglib-2.0-python3.so.0
 %dir %{py3_sitedir}/gtk-2.0
 %dir %{py3_sitedir}/gtk-2.0/gio
-%{py3_sitedir}/gtk-2.0/gio/*.py*
-#%{py3_sitedir}/gtk-2.0/gio/__pycache__
+%{py3_sitedir}/gtk-2.0/gio/*.py
+%{py3_sitedir}/gtk-2.0/gio/__pycache__
 %dir %{py3_sitedir}/glib
 %attr(755,root,root) %{py3_sitedir}/glib/_glib.*so
-%{py3_sitedir}/glib/*.py*
-#%{py3_sitedir}/glib/__pycache__
+%{py3_sitedir}/glib/*.py
+%{py3_sitedir}/glib/__pycache__
 %dir %{py3_sitedir}/gobject
 %attr(755,root,root) %{py3_sitedir}/gobject/_gobject.*so
-%{py3_sitedir}/gobject/*.py*
-#%{py3_sitedir}/gobject/__pycache__
-%{py3_sitedir}/gtk-2.0/*.py*
-#%{py3_sitedir}/gtk-2.0/__pycache__
-%{py3_sitedir}/pygtk.py*
+%{py3_sitedir}/gobject/*.py
+%{py3_sitedir}/gobject/__pycache__
+%{py3_sitedir}/gtk-2.0/*.py
+%{py3_sitedir}/gtk-2.0/__pycache__
+%{py3_sitedir}/pygtk.py
 %{py3_sitedir}/pygtk.pth
-#%{py3_sitedir}/__pycache__
+%{py3_sitedir}/__pycache__
 
 %files -n python3-pygobject-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3*.so
+%attr(755,root,root) %{_libdir}/libpyglib-2.0-python3.so
 %endif
 
 %files examples
