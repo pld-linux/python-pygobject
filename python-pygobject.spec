@@ -7,16 +7,15 @@
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
-Version:	2.28.6
-Release:	15
+Version:	2.28.7
+Release:	1
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.xz
-# Source0-md5:	9415cb7f2b3a847f2310ccea258b101e
+# Source0-md5:	ae48b60c690c4aa894e69e0c97802745
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
 Patch2:		gio.patch
-Patch3:		%{name}-pycairo.patch
 URL:		http://www.pygtk.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.12.5
@@ -135,7 +134,6 @@ Dokumentacja API pygobject.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -172,9 +170,6 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %{__make} -C py3 -j 1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	TARGET_DIR=%{_gtkdocdir}/%{module}
-
-# only python2 codegen is packaged
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/pygobject/2.0/codegen
 %endif
 
 %if %{with python2}
