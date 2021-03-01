@@ -1,14 +1,14 @@
 #
 # Conditional build:
 %bcond_without	python2		# Python 2.x module
-%bcond_without	python3		# Python 3.x module
+%bcond_with	python3		# Python 3.x module
 
 %define		module	pygobject
 Summary:	Python bindings for GObject library
 Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Name:		python-%{module}
 Version:	2.28.7
-Release:	4
+Release:	5
 License:	LGPL v2+
 Group:		Libraries/Python
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.xz
