@@ -9,4 +9,4 @@ diff -burNp pygobject-2.16.0/pygobject-2.0.pc.in pygobject-2.16.0-dud/pygobject-
 +pygdocs=${datadir}/doc/gtk-doc/html/pygobject
  defsdir=${datadir}/pygobject/2.0/defs
  codegendir=${datadir}/pygobject/2.0/codegen
- 
+ overridesdir=@pyexecdir@/gi/overrides
