@@ -11,12 +11,12 @@ Version:	2.28.7
 Release:	9
 License:	LGPL v2+
 Group:		Libraries/Python
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.28/%{module}-%{version}.tar.xz
+Source0:	https://download.gnome.org/sources/pygobject/2.28/%{module}-%{version}.tar.xz
 # Source0-md5:	ae48b60c690c4aa894e69e0c97802745
 Patch0:		%{name}-pc.patch
 Patch1:		%{name}-pyc.patch
 Patch2:		gio.patch
-URL:		http://www.pygtk.org/
+URL:		https://pygobject.readthedocs.io/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.12.5
 BuildRequires:	glib2-devel >= 1:2.24.0
@@ -34,16 +34,16 @@ BuildRequires:	python-pycairo-devel >= 1.2.0
 Requires:	python-modules
 %endif
 %if %{with python3}
-BuildRequires:	python3
-BuildRequires:	python3-devel
-BuildRequires:	python3-modules
+BuildRequires:	python3 >= 1:3.2
+BuildRequires:	python3-devel >= 1:3.2
+BuildRequires:	python3-modules >= 1:3.2
 BuildRequires:	python3-pycairo-devel >= 1.8.10
 %endif
 Requires:	glib2 >= 1:2.24.0
 Requires:	gobject-introspection >= 0.9.5
 Provides:	python-pygtk-gobject
-Obsoletes:	python-pygtk-glarea
-Obsoletes:	python-pygtk-gobject
+Obsoletes:	python-pygtk-glarea < 1:2.2.0
+Obsoletes:	python-pygtk-gobject < 2:2.9.0
 Conflicts:	python-pygtk < 1:1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -90,7 +90,7 @@ Summary(pl.UTF-8):	Wiązania Pythona do biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	glib2-devel >= 1:2.24.0
 Requires:	libffi-devel >= 3.0
-Requires:	python3-devel
+Requires:	python3-devel >= 1:3.2
 Requires:	python3-pygobject = %{version}-%{release}
 
 %description -n python3-pygobject-devel
@@ -106,7 +106,6 @@ Summary:	Example programs for GObject library
 Summary(pl.UTF-8):	Programy przykładowe dla biblioteki GObject
 Group:		Development/Languages/Python
 Requires:	%{name}-devel = %{version}-%{release}
-Obsoletes:	python-pygtk
 
 %description examples
 This package contains example programs for GObject library.
